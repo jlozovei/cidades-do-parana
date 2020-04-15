@@ -149,3 +149,7 @@ hr {
 	height: 1px;
 	background-color: black;
 }
+
+li.highlight {
+	border-color: #f44647 !important;
+}
