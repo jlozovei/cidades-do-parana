@@ -4,12 +4,14 @@
   
   import debounce from '../utils/debounce.js';
   import normalizeString from '../utils/normalizeString.js';
+  import formatTime from '../utils/formatTime.js';
 
   let remainingCities,
     guessedCities = [],
     timeIsUp = false,
     allCitiesLength = 0,
-    guessingRatio = 0;
+    guessingRatio = 0,
+    inputDisabled = '';
 
   let subscribeCities = allCities.subscribe(value => {
     allCitiesLength = value.length;
@@ -18,7 +20,17 @@
 
   let subscribeTime = timer.subscribe(value => {
     timeIsUp = value === 0;
+    inputDisabled = timeIsUp && 'disabled';
+
+    if (timeIsUp) {
+      document.activeElement.blur();
+      clearInput();
+    }
   });
+
+  function clearInput() {
+    return document.getElementById('city-name').value = '';
+  }
 
   function guessCity(event) {
     const { value } = event.target;
@@ -42,27 +54,75 @@
   function hasFoundCity(city) {
     guessedCities = [...guessedCities, city];
     document.getElementById(`${city.id}`).classList.add('found');
-    document.getElementById('city-name').value = '';
+    clearInput();
 
     guessingRatio = Math.round(guessedCities.length / allCitiesLength * 100);
+
+    setTimeout(() => {
+      document.getElementById('guessed-cities').scrollTop = document.getElementById('guessed-cities').scrollHeight;
+    }, 100);
   }
 </script>
 
-<div class="page__game">
-  <p>{$timer}</p>
-  <label for="city-name">Insira o nome da cidade</label>
-  <input type="text" id="city-name" name="city-name" placeholder="Insira o nome da cidade" on:keyup={debounce(guessCity, 150)} autofocus>
+<style>
+.guessed-cities {
+  height: 12rem;
+  margin-top: 2rem;
+  overflow-y: auto;
+}
 
-  <ul class="guessed-cities">
+.guessed-cities li {
+  position: relative;
+  padding: .5rem;
+  border: 1px solid #c1c1c1;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.guessed-cities li + li {
+  margin-top: .5rem;
+}
+
+.timer {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.time-is-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .65);
+  color: white;
+  z-index: 1;
+}
+
+.time-is-up p {
+  margin-bottom: 1rem;
+}
+</style>
+
+<div class="page__game">
+  <p class="timer">{formatTime($timer)}</p>
+
+  <label for="city-name">Insira o nome da cidade:</label>
+  <input type="text" id="city-name" name="city-name" placeholder="Digite aqui o nome da cidade" on:keyup={debounce(guessCity, 150)} autofocus class="{inputDisabled}">
+
+  <ol class="guessed-cities" id="guessed-cities">
     {#each guessedCities as city}
     <li>{ city.name }</li>
     {/each}
-  </ul>
+  </ol>
 
   {#if timeIsUp}
     <div class="time-is-up">
-      O tempo acabou!
-      Você acertou {guessedCities.length} cidades das {allCitiesLength}; um total de {guessingRatio}%.
+      <p>O tempo acabou! Você acertou {guessedCities.length} das {allCitiesLength} cidades; um total de {guessingRatio}%.</p>
 
       <button on:click={() => location.reload()}>Tentar novamente</button>
     </div>

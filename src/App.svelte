@@ -1,5 +1,8 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
+  
+  import Nav from './components/Nav.svelte';
+
   import Home from "./routes/Home.svelte";
   import About from "./routes/About.svelte";
 
@@ -28,14 +31,13 @@
 	}
 </style>
 
-<Router url="{url}">
-  <nav class="menu">
-    <Link to="/">Início</Link>
-    <Link to="sobre">Sobre</Link>
-  </nav>
+<div class="page">
+  <Router url="{url}">
+    <Nav />
 
-  <div class="page">
-    <Route path="sobre" component="{About}" />
-    <Route path="/" component="{Home}" />
-  </div>
-</Router>
+    <div class="page__content">
+      <Route path="sobre" component="{About}" />
+      <Route path="/" component="{Home}" />
+    </div>
+  </Router>
+</div>

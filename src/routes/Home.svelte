@@ -21,16 +21,17 @@
 {:else}
   <div class="page__text">
     <p>O Paraná tem 399 municípios; você conhece todos eles? Teste seu conhecimento sobre o nosso estado nesse jogo.</p>
-    <p>Como jogar:</p>
+    
+    <h2>Como jogar:</h2>
 
     <ul>
       <li>Escreva o nome da cidade no campo indicado - se você acertar, a localização será mostrada no mapa;</li>
       <li>Não precisa utilizar acentos gráficos nos nomes dos municípios;</li>
-      <li>Você tem 5 minutos para jogar;</li>
+      <li>Você tem 5 minutos para adivinhar o máximo de cidades;</li>
       <li>No final do jogo, você poderá ver a sua pontuação e tentar novamente!</li>
     </ul>
 
-    <p>Preparado?</p>
+    <h3>Preparado?</h3>
 
     <button on:click={game.start}>Começar</button>
   </div>
