@@ -2,7 +2,7 @@ import { writable, readable } from 'svelte/store';
 
 import { cities } from '../constants/cities.js';
 
-let limit = 60 * 5;
+let limit = 60 * 8;
 
 export const allCities = writable(cities);
 

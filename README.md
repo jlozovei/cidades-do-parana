@@ -10,7 +10,7 @@ Inspirado no jogo [Cidades do ES](https://cidadesdo.es), esse jogo é feito com 
 
 ## :game_die: Como jogar
 - Acesse o link [jlozovei.github.io/cidades-do-parana](https://jlozovei.github.io/cidades-do-parana);
-- Você terá 5min para adivinhar o nome das 399 cidades;
+- Você terá 8min para adivinhar o nome das 399 cidades;
 - Ao acertar um nome, a cidade ficará destacada no mapa;
 - No final do jogo, você poderá ver sua pontuação e tentar novamente!
 
@@ -34,7 +34,7 @@ Inspired by [Cidades do ES](https://cidadesdo.es), this game is built on top of 
 
 ## :game_die: How to play
 - Access the link [jlozovei.github.io/cidades-do-parana](https://jlozovei.github.io/cidades-do-parana);
-- You'll have 5 minutes to guess all 399 cities names;
+- You'll have 8 minutes to guess all 399 cities names;
 - If you guess one, the map will show the city location;
 - At the end, you can view your score and try again!
 

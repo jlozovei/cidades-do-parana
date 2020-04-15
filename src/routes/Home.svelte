@@ -27,7 +27,7 @@
     <ul>
       <li>Escreva o nome da cidade no campo indicado - se você acertar, a localização será mostrada no mapa;</li>
       <li>Não precisa utilizar acentos gráficos nos nomes dos municípios;</li>
-      <li>Você tem 5 minutos para adivinhar o máximo de cidades;</li>
+      <li>Você tem 8 minutos para adivinhar o máximo de cidades;</li>
       <li>No final do jogo, você poderá ver a sua pontuação e tentar novamente!</li>
     </ul>
 
