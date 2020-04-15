@@ -6,7 +6,8 @@
   import Home from "./routes/Home.svelte";
   import About from "./routes/About.svelte";
 
-  export let url = "";
+  export let url = '';
+  export let basepath = '/cidades-do-parana';
 </script>
 
 <style>
@@ -32,7 +33,7 @@
 </style>
 
 <div class="page">
-  <Router url="{url}">
+  <Router basepath="{basepath}" url="{url}">
     <Nav />
 
     <div class="page__content">
