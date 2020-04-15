@@ -8,6 +8,7 @@
 
   let remainingCities,
     guessedCities = [],
+    guessedNormalizedCities = [],
     timeIsUp = false,
     allCitiesLength = 0,
     guessingRatio = 0,
@@ -35,8 +36,15 @@
   function guessCity(event) {
     const { value } = event.target;
     const normalizedName = normalizeString(value).toLowerCase();
-    
-    searchCity(normalizedName);
+
+    document.querySelector('#guessed-cities li.highlight')
+      && document.querySelector('#guessed-cities li.highlight').classList.remove('highlight');
+
+    if (guessedNormalizedCities.lastIndexOf(normalizedName) > -1) {
+      highlightCityAlreadyFound(guessedNormalizedCities.lastIndexOf(normalizedName));
+    } else {
+      searchCity(normalizedName);  
+    }
   }
 
   function searchCity(term) {
@@ -52,7 +60,8 @@
   }
 
   function hasFoundCity(city) {
-    guessedCities = [...guessedCities, city];
+    guessedCities = [...guessedCities, city.name];
+    guessedNormalizedCities = [...guessedNormalizedCities, normalizeString(city.name).toLowerCase()];
     document.getElementById(`${city.id}`).classList.add('found');
     clearInput();
 
@@ -60,6 +69,16 @@
 
     setTimeout(() => {
       document.getElementById('guessed-cities').scrollTop = document.getElementById('guessed-cities').scrollHeight;
+    }, 100);
+  }
+
+  function highlightCityAlreadyFound(index) {
+    const nthChild = index + 1;
+    const item = document.querySelector(`#guessed-cities li:nth-child(${nthChild})`);
+
+    item.classList.add('highlight');
+    setTimeout(() => {
+      document.getElementById('guessed-cities').scrollTop = index * 42;
     }, 100);
   }
 </script>
@@ -111,12 +130,14 @@
 <div class="page__game">
   <p class="timer">{formatTime($timer)}</p>
 
-  <label for="city-name">Insira o nome da cidade:</label>
-  <input type="text" id="city-name" name="city-name" placeholder="Digite aqui o nome da cidade" on:keyup={debounce(guessCity, 150)} autofocus class="{inputDisabled}">
+  <div class="page__search">
+    <label for="city-name">Insira o nome da cidade:</label>
+    <input type="text" id="city-name" name="city-name" placeholder="Digite aqui o nome da cidade" on:keyup={debounce(guessCity, 150)} autofocus class="{inputDisabled}">
+  </div>
 
   <ol class="guessed-cities" id="guessed-cities">
     {#each guessedCities as city}
-    <li>{ city.name }</li>
+    <li>{ city }</li>
     {/each}
   </ol>
 
