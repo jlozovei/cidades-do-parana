@@ -44,6 +44,7 @@ ol li {
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: flex-start;
+	padding-bottom: 2rem;
 }
 
 .page__title {
