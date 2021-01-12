@@ -20,7 +20,7 @@ export default {
       dev: !production,
       // we'll extract any component CSS out into
       // a separate file - better for performance
-      css: css => {
+      css: (css) => {
         css.write('public/build/bundle.css');
       }
     }),
@@ -61,10 +61,14 @@ function serve() {
       if (!started) {
         started = true;
 
-        require('child_process').spawn('npm', ['run', 'start', '--', '--dev', '--single'], {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true
-        });
+        require('child_process').spawn(
+          'npm',
+          ['run', 'start', '--', '--dev', '--single', '--host'],
+          {
+            stdio: ['ignore', 'inherit', 'inherit'],
+            shell: true
+          }
+        );
       }
     }
   };

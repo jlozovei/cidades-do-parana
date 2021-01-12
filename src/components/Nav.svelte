@@ -1,5 +1,5 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { link } from 'svelte-spa-router';
 </script>
 
 <style>
@@ -22,7 +22,11 @@
 
 <nav class="menu">
   <ul>
-    <li><Link to="/">Início</Link></li>
-    <li><Link to="sobre">Sobre</Link></li>
+    <li>
+      <a use:link href="/">Início</a>
+    </li>
+    <li>
+      <a use:link href="/sobre">Sobre</a>
+    </li>
   </ul>
 </nav>
