@@ -1,13 +1,8 @@
 <script>
-  import { Router, Route } from "svelte-routing";
+  import Router from 'svelte-spa-router';
   
+  import routes from './routes';
   import Nav from './components/Nav.svelte';
-
-  import Home from "./routes/Home.svelte";
-  import About from "./routes/About.svelte";
-
-  export let url = '';
-  export let basepath = '/cidades-do-parana';
 </script>
 
 <style>
@@ -33,12 +28,9 @@
 </style>
 
 <div class="page">
-  <Router basepath="{basepath}" url="{url}">
-    <Nav />
+  <Nav />
 
-    <div class="page__content">
-      <Route path="sobre" component="{About}" />
-      <Route path="/" component="{Home}" />
-    </div>
-  </Router>
+  <div class="page__content">
+    <Router {routes} />
+  </div>
 </div>

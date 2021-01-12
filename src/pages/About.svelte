@@ -8,7 +8,7 @@
 <div class="page__text">
   <h1>Sobre o jogo</h1>
   <p><strong>Cidades do Paraná</strong> é um jogo educativo, feito para você testar seus conhecimentos geográficos sobre o estado do Paraná. É indicado para todas as idades.</p>
-  <p>O objetivo é fácil: acertar todos, ou o maior número de municípios. Porém, dentro de 5 minutos. Desafie seus amigos e familiares!</p>
+  <p>O objetivo é fácil: acertar todos, ou o maior número de municípios. Porém, dentro de 8 minutos. Desafie seus amigos e familiares!</p>
 
 
   <h2>Créditos</h2>
